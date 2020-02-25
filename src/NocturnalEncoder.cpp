@@ -1,16 +1,10 @@
 #include "NocturnalEncoder.hpp"
 
 
-Plugin *plugin;
+Plugin *pluginInstance;
 
 void init(rack::Plugin *p) {
-	plugin = p;
-	p->slug = "NocturnalEncoder";
-#ifdef VERSION
-	p->version = TOSTRING(VERSION);
-#endif
-	p->website = "https://github.com/djpeterso23662/nocturnalencoder";
-
+	pluginInstance = p;
 	p->addModel(modelAMDecoder);
 	p->addModel(modelAMEncoder);
 }

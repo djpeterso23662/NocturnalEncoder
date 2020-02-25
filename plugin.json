@@ -1,0 +1,38 @@
+{
+  "slug": "NocturnalEncoder",
+  "name": "NocturnalEncoder",
+  "version": "1.0.0",
+  "license": "BSD-3-Clause",
+  "brand": "NocturnalEncoder",
+  "author": "David Peterson",
+  "authorEmail": "",
+  "authorUrl": "",
+  "pluginUrl": "https://github.com/djpeterso23662/NocturnalEncoder",
+  "manualUrl": "https://github.com/djpeterso23662/NocturnalEncoder/README.md",
+  "sourceUrl": "https://github.com/djpeterso23662/NocturnalEncoder",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "AMDecoder",
+      "name": "NE-1 Decoder",
+      "description": "Decoder: AC modulated CV to CV signal",
+      "tags": [
+        "Attenuator",
+        "Envelope Follower",
+        "Slew Limiter",
+        "Dual"
+      ]
+    },
+    {
+      "slug": "AMEncoder",
+      "name": "NE-2 Encoder",
+      "description": "Encoder: CV Signal to AC modulated CV",
+      "tags": [
+        "Amplifier",
+        "Oscillator",
+        "Dual"
+      ]
+    }
+  ]
+}
