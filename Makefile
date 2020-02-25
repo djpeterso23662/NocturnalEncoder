@@ -1,6 +1,3 @@
-SLUG = NocturnalEncoder
-VERSION = 0.6.1
-
 # Add .cpp and .c files to the build
 SOURCES += $(wildcard src/*.cpp)
 
