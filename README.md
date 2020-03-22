@@ -154,3 +154,8 @@ Changes
 
 Initial public release through the [VCV Rack
 Plugins](https://vcvrack.com/plugins.html) page.
+
+### Version 1.0.0
+
+Update to VCV Rack 1.0.0 APIs.  Public release through the [VCV Rack
+Plugins](https://vcvrack.com/plugins.html) page.
