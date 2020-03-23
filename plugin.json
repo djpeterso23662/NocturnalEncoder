@@ -2,7 +2,7 @@
   "slug": "NocturnalEncoder",
   "name": "Nocturnal Encoder",
   "version": "1.0.0",
-  "license": "proprietary",
+  "license": "BSD-3-Clause",
   "brand": "Nocturnal Encoder",
   "author": "David Peterson",
   "authorEmail": "djp23662@gmail.com",
