@@ -21,6 +21,7 @@ struct NocturnalWhiteKnob : RoundKnob {
 	}
 
 	virtual std::string formatCurrentValue() {
+		ParamQuantity* paramQuantity = getParamQuantity();
 		if(paramQuantity != NULL){
 			return std::to_string(static_cast<unsigned int>(paramQuantity->getValue()));
 		}
