@@ -146,7 +146,7 @@ jobs:
     name: Publish Nightly
     # only create a release if a tag was created that is called e.g. v1.2.3
     # see also https://vcvrack.com/manual/Manifest#version
-    if: ${{ github.ref == 'refs/heads/Rack2' && github.repository_owner == 'SteveRussell33' }}
+    if: ${{ github.ref == 'refs/heads/master' && github.repository_owner == 'SteveRussell33' }}
     runs-on: ubuntu-latest
     needs: [build, build-mac]
     steps:
