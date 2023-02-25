@@ -28,6 +28,12 @@ struct AMEncoder : Module {
 	AMEncoder() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 		configParam(CARRIER_LEVEL_PARAM, 0.0, 1.0, 1.0, "Carrier signal volume");
+		configLight(CH1_WARN_LIGHT, "IN 1 above +10V warning light");
+		configLight(CH2_WARN_LIGHT, "IN 2 above +10V warning light");
+		configInput(CH1_CV_INPUT, "IN 1");
+		configInput(CH2_CV_INPUT, "IN 2");
+		configOutput(CH1_SIGNAL_OUTPUT, "OUT 1");
+		configOutput(CH2_SIGNAL_OUTPUT, "OUT 1");
 	}
 
 	void process(const ProcessArgs& args) override {
@@ -52,8 +58,8 @@ struct AMEncoder : Module {
 		processChannel(carrier, inputs[CH1_CV_INPUT], outputs[CH1_SIGNAL_OUTPUT]);
 		processChannel(carrier, inputs[CH2_CV_INPUT], outputs[CH2_SIGNAL_OUTPUT]);
 
-		lights[CH1_WARN_LIGHT].value = clamp(inputs[CH1_CV_INPUT].getVoltage() / 10.0f * -1.0f, 0.0f, 1.0f);
-		lights[CH2_WARN_LIGHT].value = clamp(inputs[CH2_CV_INPUT].getVoltage() / 10.0f * -1.0f, 0.0f, 1.0f);
+		lights[CH1_WARN_LIGHT].setBrightness(clamp(inputs[CH1_CV_INPUT].getVoltage() / 10.0f * -1.0f, 0.0f, 1.0f));
+		lights[CH2_WARN_LIGHT].setBrightness(clamp(inputs[CH2_CV_INPUT].getVoltage() / 10.0f * -1.0f, 0.0f, 1.0f));
 	}
 
 	static void processChannel(float in, Input &lin, Output &out) {
@@ -72,9 +78,7 @@ struct AMEncoderWidget : ModuleWidget {
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/AMEncoder.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
 		addParam(createParam<NocturnalWhiteKnob>(Vec(12.25,316.125), module, AMEncoder::CARRIER_LEVEL_PARAM));
 

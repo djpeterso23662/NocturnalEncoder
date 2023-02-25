@@ -53,16 +53,26 @@ struct AMDecoder : Module {
 		configParam(CH2_ATTENUVERTER_PARAM, -1.0, 1.0, 1.0, "Attenuverter CH2 -1 to +1");
 		configParam(CH2_OFFSET_PARAM, -10.0, 10.0, 0.0, "Offset CH2 -10v to +10v");
 		configParam(CH2_SCALE_PARAM, 1.0, 3.0, 1.0, "Scale CH2 1x to 3x");
+		configLight(CH1_WARN_LIGHT, "IN 1 above +10V warning light");
+		configLight(CH1_ACTIVITY_LIGHT, "OUT 1 level light");
+		configLight(CH2_WARN_LIGHT, "IN 2 above +10V warning light");
+		configLight(CH2_ACTIVITY_LIGHT, "OUT 2 level light");
+		configInput(CH1_SIGNAL_INPUT, "IN 1");
+		configInput(CH2_SIGNAL_INPUT, "IN 2");
+		configOutput(CH1_CV_OUTPUT, "OUT 1");
+		configOutput(CH1_TRIGGER_OUTPUT, "GATE 1");
+		configOutput(CH2_CV_OUTPUT, "OUT 2");
+		configOutput(CH2_TRIGGER_OUTPUT, "GATE 2");
 	}
 
 	void process(const ProcessArgs& args) override {
 		for (int c = 0; c < 2; c++) {
 			float in = inputs[CH1_SIGNAL_INPUT + c].getVoltage();
 			if (in > 9.99f) {
-				lights[CH1_WARN_LIGHT + c].value = 1.0f;	
+				lights[CH1_WARN_LIGHT + c].setBrightness(1.0f);	
 			}
 			else {
-				lights[CH1_WARN_LIGHT + c].value = 0.0f;
+				lights[CH1_WARN_LIGHT + c].setBrightness(0.0f);
 			}
 			float shape = 0.0f;
 			float delta = in - out[c];
@@ -115,7 +125,7 @@ struct AMDecoder : Module {
 					outputs[CH1_TRIGGER_OUTPUT + c].setVoltage( 0.0f);
 				}
 			}
-			lights[CH1_ACTIVITY_LIGHT + c].value = out[c] / 10.0;
+			lights[CH1_ACTIVITY_LIGHT + c].setBrightness(out[c] / 10.0f);
 
 		}  //for (int c = 0; c < 2; c++)
 	}
