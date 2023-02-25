@@ -2,7 +2,7 @@ name: Build VCV Rack Plugin
 on:
   push:
     branches:
-      - Rack2
+      - master
       - 'releases/**'
     tags:
       - 'v**'
